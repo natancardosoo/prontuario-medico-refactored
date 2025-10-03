@@ -1,6 +1,6 @@
-package componentes_inteface;
+package br.com.projeto.prontuario.view.components;
 
-import entidades.TabelaEntidade;
+import br.com.projeto.prontuario.model.TabelaEntidade;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;

@@ -1,10 +1,10 @@
-package interfaces;
+package br.com.projeto.prontuario.view;
 
-import BancoDeDados.DAO;
-import componentes_inteface.DialogPersonalizado;
-import componentes_inteface.TabelaProntuarios;
-import entidades.Paciente;
-import entidades.ProntuarioMedico;
+import br.com.projeto.prontuario.repository.DAO;
+import br.com.projeto.prontuario.view.components.DialogPersonalizado;
+import br.com.projeto.prontuario.view.components.TabelaProntuarios;
+import br.com.projeto.prontuario.model.Paciente;
+import br.com.projeto.prontuario.model.ProntuarioMedico;
 
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;

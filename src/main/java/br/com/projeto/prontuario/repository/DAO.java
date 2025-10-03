@@ -1,8 +1,8 @@
-package BancoDeDados;
+package br.com.projeto.prontuario.repository;
 
-import entidades.Paciente;
-import entidades.ProntuarioMedico;
-import entidades.TabelaEntidade;
+import br.com.projeto.prontuario.model.Paciente;
+import br.com.projeto.prontuario.model.ProntuarioMedico;
+import br.com.projeto.prontuario.model.TabelaEntidade;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

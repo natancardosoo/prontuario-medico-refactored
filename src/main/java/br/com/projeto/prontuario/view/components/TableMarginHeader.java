@@ -1,4 +1,4 @@
-package componentes_inteface;
+package br.com.projeto.prontuario.view.components;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;

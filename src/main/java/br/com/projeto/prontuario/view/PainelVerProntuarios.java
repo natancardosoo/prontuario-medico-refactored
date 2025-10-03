@@ -1,7 +1,7 @@
-package interfaces;
+package br.com.projeto.prontuario.view;
 
-import BancoDeDados.DAO;
-import componentes_inteface.*;
+import br.com.projeto.prontuario.repository.DAO;
+import br.com.projeto.prontuario.view.components.*;
 
 import javax.swing.*;
 import javax.swing.table.TableColumn;

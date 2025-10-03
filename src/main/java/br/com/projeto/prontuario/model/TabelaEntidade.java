@@ -1,4 +1,4 @@
-package entidades;
+package br.com.projeto.prontuario.model;
 
 public class TabelaEntidade {
 

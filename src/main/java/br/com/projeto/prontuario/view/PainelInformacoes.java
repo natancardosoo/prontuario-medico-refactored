@@ -1,10 +1,10 @@
-package interfaces;
+package br.com.projeto.prontuario.view;
 
-import componentes_inteface.ButtonsPanel;
-import componentes_inteface.CornerDecoration;
-import componentes_inteface.LabelsMedium;
-import componentes_inteface.Logo;
-import entidades.Paciente;
+import br.com.projeto.prontuario.view.components.ButtonsPanel;
+import br.com.projeto.prontuario.view.components.CornerDecoration;
+import br.com.projeto.prontuario.view.components.LabelsMedium;
+import br.com.projeto.prontuario.view.components.Logo;
+import br.com.projeto.prontuario.model.Paciente;
 
 import javax.swing.*;
 import javax.swing.border.Border;

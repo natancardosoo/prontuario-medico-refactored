@@ -1,38 +1,35 @@
-package interfaces;
+package br.com.projeto.prontuario.view;
 
-import componentes_inteface.ButtonsPanel;
-import componentes_inteface.CornerDecoration;
-import componentes_inteface.LabelsMedium;
-import componentes_inteface.Logo;
+import br.com.projeto.prontuario.view.components.ButtonsPanel;
+import br.com.projeto.prontuario.view.components.CornerDecoration;
+import br.com.projeto.prontuario.view.components.LabelsMedium;
+import br.com.projeto.prontuario.view.components.Logo;
 
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.text.ParseException;
 
-public class PainelCriarProntuario extends JPanel {
+public class PainelProntuarioAberto extends JPanel {
 
     Logo logo;
     LabelsMedium campoTexto, cpfLabel;
     JTextArea campoArea, anamnese, planoTerapeutico, encaminhamento;
     JFormattedTextField cpfField;
-    ButtonsPanel abrir, cancelar;
+    ButtonsPanel voltar;
     JScrollPane campoScroll;
     CornerDecoration cornerDecoration;
 
     // Mesmo explicado na classe PainelAcesso.
-    public PainelCriarProntuario() {
+    public PainelProntuarioAberto() {
         setBackground(new Color(0, 113, 182));
         setSize(600, 600);
         setVisible(false);
 
-        // Colocando a logo no painel
         logo = new Logo("/images/iconeTelaAbrir.png", 20, 5, 201, 70);
 
-        // Decorações no canto
         cornerDecoration = new CornerDecoration();
 
-        // Campos para o preenchimento de informações
         anamnese = camposDePreenchimento("Anamnese:", 138, 90, 325, 110);
 
         planoTerapeutico = camposDePreenchimento("Plano terapêutico:", 138, 230, 325, 110);
@@ -41,25 +38,21 @@ public class PainelCriarProntuario extends JPanel {
 
         cpfField = cpfArea("CPF do médico:", 200, 425, 200, 25);
 
-        // Botões do painel
-        abrir = new ButtonsPanel("Abrir", 168, 470, 115, 34);
+        voltar = new ButtonsPanel("Voltar", 243, 470, 115, 34);
 
-        cancelar = new ButtonsPanel("Cancelar", 318, 470, 115, 34);
-
-        // Adicionamos os componentes no painel
         setLayout(null);
         add(logo);
-        add(abrir);
-        add(cancelar);
+        add(voltar);
         add(cornerDecoration.getParteDeBaixo());
         add(cornerDecoration.getParteDeCima());
     }
 
-    // Criamos um método para evitar a repetição do código, nesse método criamos um label e um área de texto.
+    // Método para evitar repetição de código e colocar um campo JTextArea com um Label
     public JTextArea camposDePreenchimento(String titulo, int x, int y, int w, int h) {
         campoTexto = new LabelsMedium(titulo, x, y - 20, w, 25, 20);
 
         campoArea = new JTextArea();
+        campoArea.setEditable(false);
         campoArea.setFont(new Font("AmpleSoftPro-Medium", Font.PLAIN, 15));
         campoArea.setLineWrap(true);
         campoArea.setWrapStyleWord(true);
@@ -68,7 +61,6 @@ public class PainelCriarProntuario extends JPanel {
         marginCampos.top = 3;
         marginCampos.right = 2;
         campoArea.setMargin(marginCampos);
-
         campoScroll = new JScrollPane(campoArea);
         campoScroll.setBackground(Color.white);
         campoScroll.setBorder(BorderFactory.createLineBorder(new Color(1, 76, 121), 1));
@@ -82,7 +74,7 @@ public class PainelCriarProntuario extends JPanel {
         return campoArea;
     }
 
-    // Criamos um método para evitar a repetição do código, nesse método criamos um label e um área de texto formatada.
+    // Método para criação de um JFormattedTextField
     public JFormattedTextField cpfArea(String titulo, int x, int y, int w, int h) {
         cpfLabel = new LabelsMedium(titulo, x, y - 20, w, 25, 20);
 
@@ -94,6 +86,7 @@ public class PainelCriarProntuario extends JPanel {
             cpfField.setBackground(Color.white);
             cpfField.setBorder(BorderFactory.createLineBorder(new Color(1, 76, 121), 1));
             cpfField.setHorizontalAlignment(JFormattedTextField.CENTER);
+            cpfField.setEditable(false);
 
             cpfField.setBounds(x, y, w, h);
             add(cpfLabel);
