@@ -1,4 +1,3 @@
-CREATE DATABASE bd_UBS;
 USE bd_UBS;
 
 CREATE TABLE Funcionario (
