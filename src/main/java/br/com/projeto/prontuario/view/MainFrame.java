@@ -1,7 +1,10 @@
 package br.com.projeto.prontuario.view;
 
 import br.com.projeto.prontuario.repository.DAO;
-import br.com.projeto.prontuario.dao.*;
+import br.com.projeto.prontuario.dao.ProntuarioDAO;
+import br.com.projeto.prontuario.dao.AtendimentoDAO;
+import br.com.projeto.prontuario.dao.FuncionarioDAO;
+import br.com.projeto.prontuario.dao.PacienteDAO;
 import br.com.projeto.prontuario.view.components.DialogPersonalizado;
 import br.com.projeto.prontuario.view.components.TabelaProntuarios;
 import br.com.projeto.prontuario.model.Paciente;
@@ -26,7 +29,8 @@ public class MainFrame extends JFrame implements ActionListener {
     AtendimentoDAO atendimentoDAO;
     FuncionarioDAO funcionarioDAO;
     PacienteDAO pacienteDAO;
-    ProntuarioDAO prontuarioDAO
+    ProntuarioDAO prontuarioDAO;
+    DAO dao;
 
     static String cpfNaoFormatado;
     int confirma = 0;
@@ -41,6 +45,10 @@ public class MainFrame extends JFrame implements ActionListener {
         informacoes = new PainelInformacoes();
         prontuario = new PainelCriarProntuario();
         prontuarioAberto = new PainelProntuarioAberto();
+        atendimentoDAO = new AtendimentoDAO();
+        funcionarioDAO = new FuncionarioDAO();
+        pacienteDAO = new PacienteDAO();
+        prontuarioDAO = new ProntuarioDAO();
 
         // Colocando um ícone para o frame.
         setIconImage(new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/icone.png"))).getImage());
@@ -104,8 +112,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
                             try {
                                 String id = (String) verProntuarios.tabela.getValueAt(rowIndex, 0);
-                                informacoes = prontuarioDAO.obt
-
+                                informacoes = dao.preencheProntuario(id);
                                 prontuarioAberto.anamnese.setText(informacoes.get(0));
                                 prontuarioAberto.planoTerapeutico.setText(informacoes.get(1));
                                 prontuarioAberto.encaminhamento.setText(informacoes.get(2));
