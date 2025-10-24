@@ -1,6 +1,7 @@
 package br.com.projeto.prontuario.view;
 
 import br.com.projeto.prontuario.repository.DAO;
+import br.com.projeto.prontuario.dao.DAOFactory;
 import br.com.projeto.prontuario.dao.ProntuarioDAO;
 import br.com.projeto.prontuario.dao.AtendimentoDAO;
 import br.com.projeto.prontuario.dao.FuncionarioDAO;
@@ -26,10 +27,10 @@ public class MainFrame extends JFrame implements ActionListener {
     PainelCriarProntuario prontuario;
     PainelVerProntuarios verProntuarios;
     PainelProntuarioAberto prontuarioAberto;
-    AtendimentoDAO atendimentoDAO;
-    FuncionarioDAO funcionarioDAO;
-    PacienteDAO pacienteDAO;
-    ProntuarioDAO prontuarioDAO;
+    AtendimentoDAO atendimentoDAO = DAOFactory.getAtendimentoDAO();
+    FuncionarioDAO funcionarioDAO = DAOFactory.getFuncionarioDAO();
+    PacienteDAO pacienteDAO = DAOFactory.getPacienteDAO();
+    ProntuarioDAO prontuarioDAO = DAOFactory.getProntuarioDAO();
     DAO dao;
 
     static String cpfNaoFormatado;
@@ -45,10 +46,6 @@ public class MainFrame extends JFrame implements ActionListener {
         informacoes = new PainelInformacoes();
         prontuario = new PainelCriarProntuario();
         prontuarioAberto = new PainelProntuarioAberto();
-        atendimentoDAO = new AtendimentoDAO();
-        funcionarioDAO = new FuncionarioDAO();
-        pacienteDAO = new PacienteDAO();
-        prontuarioDAO = new ProntuarioDAO();
 
         // Colocando um ícone para o frame.
         setIconImage(new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/icone.png"))).getImage());
