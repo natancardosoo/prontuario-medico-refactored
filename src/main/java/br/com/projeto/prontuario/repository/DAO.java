@@ -1,5 +1,6 @@
 package br.com.projeto.prontuario.repository;
 
+import br.com.projeto.prontuario.config.ConexaoDB;
 import br.com.projeto.prontuario.model.Paciente;
 import br.com.projeto.prontuario.model.ProntuarioMedico;
 import br.com.projeto.prontuario.model.TabelaEntidade;
@@ -16,7 +17,7 @@ public class DAO {
 
     public boolean verificaCpf(Paciente paciente) throws Exception {
 
-        try(PreparedStatement ps = ConexaoDB.obtemConexao().prepareStatement("SELECT * FROM Paciente WHERE cpf = ?")) {
+        try(PreparedStatement ps = ConexaoDB.getConnection().prepareStatement("SELECT * FROM Paciente WHERE cpf = ?")) {
 
             ps.setString(1, paciente.getCpf());
 
@@ -35,7 +36,7 @@ public class DAO {
 
 
     public boolean verificaFuncionario(String cpf) throws Exception {
-        try(PreparedStatement ps = ConexaoDB.obtemConexao().prepareStatement("SELECT * FROM Funcionario WHERE cpf = ?")) {
+        try(PreparedStatement ps = ConexaoDB.getConnection().prepareStatement("SELECT * FROM Funcionario WHERE cpf = ?")) {
 
             ps.setString(1, cpf);
 
@@ -52,7 +53,7 @@ public class DAO {
 
 
     public int pegaIdAtendimento(String cpf) throws Exception {
-        try(PreparedStatement ps = ConexaoDB.obtemConexao().prepareStatement("SELECT * FROM Atendimento WHERE Paciente_cpf = ?")) {
+        try(PreparedStatement ps = ConexaoDB.getConnection().prepareStatement("SELECT * FROM Atendimento WHERE Paciente_cpf = ?")) {
             ps.setString(1, cpf);
 
             try(ResultSet rs = ps.executeQuery()) {
@@ -67,7 +68,7 @@ public class DAO {
 
 
     public void adicionaProntuario(ProntuarioMedico prontuarioMedico) throws Exception {
-        try(PreparedStatement ps = ConexaoDB.obtemConexao().prepareStatement("INSERT INTO Prontuario(Funcionario_idFuncionario, Atendimento_idAtendimento, anamnese, " +
+        try(PreparedStatement ps = ConexaoDB.getConnection().prepareStatement("INSERT INTO Prontuario(Funcionario_idFuncionario, Atendimento_idAtendimento, anamnese, " +
                 "plano_terapeutico, encaminhamento) VALUES (?, ?, ?, ?, ?)")) {
 
             ps.setString(1, prontuarioMedico.getId_Funcionario());
@@ -81,7 +82,7 @@ public class DAO {
     }
 
     public ArrayList<TabelaEntidade> pegaTabelaEntidade(String cpf) throws Exception {
-        try(PreparedStatement ps = ConexaoDB.obtemConexao().prepareStatement("select Prontuario.idProntuario, Funcionario.nome, Atendimento.data_atendimento from Prontuario " +
+        try(PreparedStatement ps = ConexaoDB.getConnection().prepareStatement("select Prontuario.idProntuario, Funcionario.nome, Atendimento.data_atendimento from Prontuario " +
                 "join Funcionario on Prontuario.Funcionario_idFuncionario = Funcionario.idFuncionario " +
                 "join Atendimento on Prontuario.Atendimento_idAtendimento = Atendimento.idAtendimento " +
                 "where Atendimento.Paciente_cpf = ?")) {
@@ -108,7 +109,7 @@ public class DAO {
     }
 
     public ArrayList<String> preencheProntuario(String id) throws Exception {
-        try(PreparedStatement ps = ConexaoDB.obtemConexao().prepareStatement("select Prontuario.anamnese, Prontuario.plano_terapeutico, Prontuario.encaminhamento, " +
+        try(PreparedStatement ps = ConexaoDB.getConnection().prepareStatement("select Prontuario.anamnese, Prontuario.plano_terapeutico, Prontuario.encaminhamento, " +
                 "Funcionario.cpf from Prontuario " +
                 "join Funcionario on Prontuario.Funcionario_idFuncionario = Funcionario.idFuncionario " +
                 "where Prontuario.idProntuario = ?")) {
