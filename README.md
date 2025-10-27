@@ -50,15 +50,19 @@ SOURCE bd_UBS.sql;
 ```
 ### 3. Ajustar credenciais
 
-No arquivo `ConexaoDB.java`, edite usuário e senha do MySQL conforme sua máquina:
+No arquivo `DatabaseConnection.java`, edite usuário e senha do MySQL conforme sua máquina:
 ```java
-private static String host = "localhost";
-private static String porta = "3306";
-private static String db = "bd_UBS";
-private static String usuario = "root";
-private static String senha = "1234";
+private static final String HOST = "localhost";
+private static final String PORT = "3306";
+private static final String DATABASE = "bd_UBS";
+private static final String USER = "root";
+private static final String PASSWORD = "1234";
 ```
-### 4. Executar o projeto via Maven
+### 4. Download das fontes
+
+No diretório do projeto, siga o caminho 'src\main\resources\fonts' e efetue o download de todas as fontes necessárias.
+
+### 5. Executar o projeto via Maven
 No terminal do diretório principal do projeto, execute o código abaixo:
 ```bash
 mvn clean compile exec:java
