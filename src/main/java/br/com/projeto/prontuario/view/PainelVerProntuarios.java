@@ -1,12 +1,13 @@
 package br.com.projeto.prontuario.view;
 
-import br.com.projeto.prontuario.repository.DAO;
+import br.com.projeto.prontuario.dao.ProntuarioDAO;
 import br.com.projeto.prontuario.view.components.*;
 
 import javax.swing.*;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class PainelVerProntuarios extends JPanel {
 
@@ -43,13 +44,15 @@ public class PainelVerProntuarios extends JPanel {
     }
 
     public JScrollPane retornaTabela() {
-        DAO dao = new DAO();
+        ProntuarioDAO prontuarioDAO = new ProntuarioDAO();
 
         tabela = new JTable();
         tabelaScroll = new JScrollPane(tabela);
 
         try {
-            tabela.setModel(new TabelaProntuarios(dao.pegaTabelaEntidade(MainFrame.cpfNaoFormatado)));
+            tabela.setModel(new TabelaProntuarios(
+                    new ArrayList<>(prontuarioDAO.listarPorCpfPaciente(MainFrame.cpfNaoFormatado))
+            ));
         } catch (Exception ex) {
             ex.getStackTrace();
         }
